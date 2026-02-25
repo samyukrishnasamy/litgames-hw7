@@ -1,0 +1,132 @@
+[gd_scene load_steps=18 format=3 uid="uid://bkj6ek4myr6tj"]
+
+[ext_resource type="Script" uid="uid://dyxobointvobf" path="res://character_body_3d.gd" id="1_a202f"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_4xowi"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a202f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_noarx"]
+albedo_color = Color(0.48235294, 0.7019608, 0.4117647, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a202f"]
+size = Vector3(0.042541504, 16.644958, 19.999207)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noarx"]
+size = Vector3(21.980865, 16.237183, 0.001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a0tk4"]
+size = Vector3(27.331665, 20.132263, 0.001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r3fl7"]
+size = Vector3(0.001, 21.889648, 36.30841)
+
+[sub_resource type="SphereMesh" id="SphereMesh_a202f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0tk4"]
+albedo_color = Color(1, 0.8745098, 0.13333334, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 5.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a202f"]
+height = 1.8657227
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a202f"]
+height = 4.0549316
+radius = 0.6069336
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_noarx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3fl7"]
+albedo_color = Color(0.4117647, 0.29411766, 0.21568628, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_a202f"]
+
+[sub_resource type="Sky" id="Sky_noarx"]
+sky_material = SubResource("PanoramaSkyMaterial_a202f")
+
+[sub_resource type="Environment" id="Environment_a202f"]
+background_mode = 2
+sky = SubResource("Sky_noarx")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Grass" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Grass"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_4xowi")
+debug_color = Color(0.80611795, 0.2690095, 0.79154015, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Grass/StaticBody3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_a202f")
+surface_material_override/0 = SubResource("StandardMaterial3D_noarx")
+
+[node name="walls" type="Node3D" parent="Grass"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Grass/walls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/walls/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.94465, -1.9884644, 0.0050354004)
+shape = SubResource("BoxShape3D_a202f")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Grass/walls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/walls/StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8386717, -1.1944737, -9.840249)
+shape = SubResource("BoxShape3D_noarx")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Grass/walls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/walls/StaticBody3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.86920166, -2.1199646, 9.876743)
+shape = SubResource("BoxShape3D_a0tk4")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="Grass/walls"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/walls/StaticBody3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.943621, -1.3618164, 6.75119)
+shape = SubResource("BoxShape3D_r3fl7")
+
+[node name="sun" type="Node3D" parent="."]
+transform = Transform3D(0.9551389, -0.2961582, 0, 0.2961582, 0.9551389, 0, 0, 0, 1, -10.735688, 7.5097504, -41.07157)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="sun"]
+transform = Transform3D(-0.55619925, 0.80399704, 0.21031226, 0.2926921, -0.047338843, 0.95503426, 0.77780056, 0.5927461, -0.20899375, 7.922237, 0.91552067, 45.835632)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="sun/DirectionalLight3D"]
+transform = Transform3D(0.45671323, 0.36066264, 0.8132256, 0.73402417, 0.36369306, -0.57352966, -0.50261515, 0.8588655, -0.09863156, -1.0459056, -1.1568375, -0.098599434)
+mesh = SubResource("SphereMesh_a202f")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0tk4")
+
+[node name="CharacterBody3D2" type="CharacterBody3D" parent="."]
+script = ExtResource("1_a202f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5172968, 0)
+shape = SubResource("CapsuleShape3D_a202f")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+current = true
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5959024)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.4832177, 1.0274658, -7.8576727)
+shape = SubResource("CylinderShape3D_a202f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 2.028574, 0, 0, 0, 1, 4.483, 2.0106518, -7.858)
+mesh = SubResource("CylinderMesh_noarx")
+surface_material_override/0 = SubResource("StandardMaterial3D_r3fl7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a202f")
